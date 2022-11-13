@@ -19,8 +19,7 @@ class SearchDialogFragment : BottomSheetDialogFragment() {
             Int
         ) {
             if (binding.searchEditText.text != null &&
-                !binding.searchEditText.text.toString()
-                    .isEmpty()
+                binding.searchEditText.text.toString().isNotEmpty()
             ) {
                 binding.searchButtonTextview.isEnabled = true
                 binding.clearTextImageview.visibility = View.VISIBLE
