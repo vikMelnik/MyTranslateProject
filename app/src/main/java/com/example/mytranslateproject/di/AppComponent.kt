@@ -1,7 +1,7 @@
 package com.example.mytranslateproject.di
 
 import android.app.Application
-import com.example.mytranslateproject.translatorapp.TranslatorApp
+import com.example.mytranslateproject.application.TranslatorApp
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
@@ -18,14 +18,11 @@ import javax.inject.Singleton
         RepositoryModule::class,
         ViewModelModule::class,
         ActivityModule::class,
-        AndroidSupportInjectionModule::class
-    ]
+        AndroidSupportInjectionModule::class]
 )
-
 @Singleton
 interface AppComponent {
 
-// Этот билдер мы вызовем из класса TranslatorApp, который наследует Application
     @Component.Builder
     interface Builder {
         @BindsInstance
@@ -34,8 +31,5 @@ interface AppComponent {
         fun build(): AppComponent
     }
 
-// Кастомный Application
     fun inject(englishVocabularyApp: TranslatorApp)
-
-
 }
