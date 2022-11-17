@@ -2,11 +2,10 @@ package com.example.mytranslateproject.application
 
 import android.app.Application
 import dagger.android.AndroidInjector
-import dagger.android.DaggerActivity
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
-import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
+import com.example.mytranslateproject.di.DaggerAppComponent
 
 
 class TranslatorApp : Application(), HasAndroidInjector {

@@ -2,8 +2,8 @@ package com.example.mytranslateproject.di
 
 import com.example.mytranslateproject.model.data.DataModel
 import com.example.mytranslateproject.model.datasource.DataSource
-import com.example.mytranslateproject.model.datasource.RetrofitImpl
-import com.example.mytranslateproject.model.datasource.RoomDataBaseImpl
+import com.example.mytranslateproject.model.datasource.RetrofitImplementation
+import com.example.mytranslateproject.model.datasource.RoomDataBaseImplementation
 import com.example.mytranslateproject.model.repository.Repository
 import com.example.mytranslateproject.model.repository.RepositoryImpl
 import dagger.Module
@@ -30,10 +30,10 @@ class RepositoryModule {
     @Singleton
     @Named(NAME_REMOTE)
     internal fun provideDataSourceRemote(): DataSource<List<DataModel>> =
-        RetrofitImpl()
+        RetrofitImplementation()
 
     @Provides
     @Singleton
     @Named(NAME_LOCAL)
-    internal fun provideDataSourceLocal(): DataSource<List<DataModel>> = RoomDataBaseImpl()
+    internal fun provideDataSourceLocal(): DataSource<List<DataModel>> = RoomDataBaseImplementation()
 }
