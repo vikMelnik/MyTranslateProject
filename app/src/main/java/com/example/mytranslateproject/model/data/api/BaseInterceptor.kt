@@ -1,10 +1,15 @@
-package com.example.mytranslateproject.model.datasource
+package com.example.mytranslateproject.model.data.api
 
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
 
+/**
+ * Custom interceptor to intercept basic responses and to show basic errors to the user
+ * (not fully implemented)
+ */
 class BaseInterceptor private constructor() : Interceptor {
+
     private var responseCode: Int = 0
 
     @Throws(IOException::class)
@@ -15,16 +20,21 @@ class BaseInterceptor private constructor() : Interceptor {
     }
 
     fun getResponseCode(): ServerResponseStatusCode {
-        var statusCode = ServerResponseStatusCode.UNDEFINED_ERROR
+        var statusCode =
+            ServerResponseStatusCode.UNDEFINED_ERROR
         when (responseCode / 100) {
             1 -> statusCode = ServerResponseStatusCode.INFO
             2 -> statusCode = ServerResponseStatusCode.SUCCESS
-            3 -> statusCode = ServerResponseStatusCode.REDIRECTION
-            4 -> statusCode = ServerResponseStatusCode.CLIENT_ERROR
-            5 -> statusCode = ServerResponseStatusCode.SERVER_ERROR
+            3 -> statusCode =
+                ServerResponseStatusCode.REDIRECTION
+            4 -> statusCode =
+                ServerResponseStatusCode.CLIENT_ERROR
+            5 -> statusCode =
+                ServerResponseStatusCode.SERVER_ERROR
         }
         return statusCode
     }
+
 
     enum class ServerResponseStatusCode {
         INFO,
@@ -36,6 +46,7 @@ class BaseInterceptor private constructor() : Interceptor {
     }
 
     companion object {
+
         val interceptor: BaseInterceptor
             get() = BaseInterceptor()
     }
