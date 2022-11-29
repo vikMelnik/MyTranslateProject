@@ -40,11 +40,23 @@ android {
 }
 
 dependencies {
-    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
 
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
     implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
+    //Download images
+// Coil
+    implementation 'io.coil-kt:coil:0.11.0'
+
+//Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+//Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+
 
     //Koin
 //Текущая версия библиотеки
