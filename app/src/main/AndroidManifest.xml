@@ -33,7 +33,8 @@
         <activity
             android:name=".view.descriptionscreen.DescriptionActivity"
             android:screenOrientation="fullSensor"/>
-
-    </application>
-
+        <activity
+            android:name=".view.history.HistoryActivity"
+            android:screenOrientation="fullSensor"/>
+</application>
 </manifest>

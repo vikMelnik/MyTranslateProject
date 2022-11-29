@@ -10,6 +10,7 @@ import com.example.mytranslateproject.databinding.SearchDialogFragmentBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.example.mytranslateproject.utils.getEmptyString
 
+
 class SearchDialogFragment : BottomSheetDialogFragment() {
 
     private var _binding: SearchDialogFragmentBinding? = null

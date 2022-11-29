@@ -35,7 +35,6 @@ class BaseInterceptor private constructor() : Interceptor {
         return statusCode
     }
 
-
     enum class ServerResponseStatusCode {
         INFO,
         SUCCESS,

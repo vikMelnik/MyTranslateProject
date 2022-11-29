@@ -8,7 +8,5 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("words/search")
-// Метод теперь возвращает Deferred
-    fun searchAsync(@Query("search") wordToSearch: String):
-            Deferred<List<DataModel>>
+    fun searchAsync(@Query("search") wordToSearch: String): Deferred<List<DataModel>>
 }
