@@ -14,21 +14,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTranslateProject"
+        android:name=".application.TranslatorApp"
         tools:targetApi="31">
         <activity
             android:name=".view.main.MainActivity"
             android:exported="true"
             android:screenOrientation="fullSensor">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-    </application>
-
+        <activity
+            android:name=".view.descriptionscreen.DescriptionActivity"
+            android:screenOrientation="fullSensor"/>
+        <activity
+            android:name=".view.history.HistoryActivity"
+            android:screenOrientation="fullSensor"/>
+</application>
 </manifest>
