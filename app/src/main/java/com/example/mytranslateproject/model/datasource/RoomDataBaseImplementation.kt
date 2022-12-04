@@ -1,7 +1,7 @@
 package com.example.mytranslateproject.model.datasource
 
-import com.example.mytranslateproject.model.data.AppState
-import com.example.mytranslateproject.model.data.DataModel
+import com.example.model.data.AppState
+import com.example.model.data.DataModel
 import com.example.mytranslateproject.room.HistoryDao
 import com.example.mytranslateproject.utils.convertDataModelSuccessToEntity
 import com.example.mytranslateproject.utils.mapHistoryEntityToSearchResult

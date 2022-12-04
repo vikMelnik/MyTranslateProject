@@ -6,12 +6,15 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import coil.ImageLoader
+import coil.request.LoadRequest
+import coil.transform.CircleCropTransformation
+
 import com.example.mytranslateproject.R
 import com.example.mytranslateproject.databinding.ActivityDescriptionBinding
 import com.example.mytranslateproject.utils.network.isOnline
 import com.example.mytranslateproject.utils.ui.AlertDialogFragment
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
+
 
 
 class DescriptionActivity : AppCompatActivity() {
@@ -37,7 +40,6 @@ class DescriptionActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
     private fun setActionbarHomeButtonAsUp() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -51,9 +53,7 @@ class DescriptionActivity : AppCompatActivity() {
         if (imageLink.isNullOrBlank()) {
             stopRefreshAnimationIfNeeded()
         } else {
-
-            usePicassoToLoadPhoto(binding.descriptionImageview, imageLink)
-           // useCoilToLoadPhoto(binding.descriptionImageview, imageLink)
+            useCoilToLoadPhoto(binding.descriptionImageview, imageLink)
         }
     }
 
@@ -78,40 +78,25 @@ class DescriptionActivity : AppCompatActivity() {
         }
     }
 
-    private fun usePicassoToLoadPhoto(imageView: ImageView, imageLink: String) {
-        Picasso.get().load("https:$imageLink")
-            .placeholder(R.drawable.ic_no_photo_vector).fit().centerCrop()
-            .into(imageView, object : Callback {
-                override fun onSuccess() {
-                    stopRefreshAnimationIfNeeded()
-                }
-
-                override fun onError(e: Exception?) {
-                    stopRefreshAnimationIfNeeded()
+    private fun useCoilToLoadPhoto(imageView: ImageView, imageLink: String) {
+        val request = LoadRequest.Builder(this)
+            .data("https:$imageLink")
+            .target(
+                onStart = {},
+                onSuccess = { result ->
+                    imageView.setImageDrawable(result)
+                },
+                onError = {
                     imageView.setImageResource(R.drawable.ic_load_error_vector)
                 }
-            })
+            )
+            .transformations(
+                CircleCropTransformation(),
+            )
+            .build()
+        ImageLoader(this).execute(request)
     }
 
-//    private fun useCoilToLoadPhoto(imageView: ImageView, imageLink: String) {
-//        val request = LoadRequest.Builder(this)
-//            .data("https:$imageLink")
-//            .target(
-//                onStart = {},
-//                onSuccess = { result ->
-//                    imageView.setImageDrawable(result)
-//                },
-//                onError = {
-//                    imageView.setImageResource(R.drawable.ic_load_error_vector)
-//                }
-//            )
-//            //.transformations(
-//            //    CircleCropTransformation(),
-//            //)
-//            .build()
-//
-//        ImageLoader(this).execute(request)
-//    }
 
     companion object {
 

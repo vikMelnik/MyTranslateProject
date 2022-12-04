@@ -5,17 +5,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
-import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import dagger.android.AndroidInjection
 import com.example.mytranslateproject.R
 import com.example.mytranslateproject.databinding.ActivityMainBinding
-import com.example.mytranslateproject.model.data.AppState
-import com.example.mytranslateproject.model.data.DataModel
+import com.example.model.data.AppState
+import com.example.model.data.DataModel
 import com.example.mytranslateproject.utils.convertMeaningsToString
 import com.example.mytranslateproject.utils.network.isOnline
 import com.example.mytranslateproject.view.base.BaseActivity
@@ -23,7 +17,6 @@ import com.example.mytranslateproject.view.descriptionscreen.DescriptionActivity
 import com.example.mytranslateproject.view.history.HistoryActivity
 import com.example.mytranslateproject.view.main.adapter.MainAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import javax.inject.Inject
 
 private const val BOTTOM_SHEET_FRAGMENT_DIALOG_TAG = "74a54328-5d62-46bf-ab6b-cbf5fgt0-092395"
 
@@ -46,7 +39,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
                         this@MainActivity,
                         data.text!!,
                         convertMeaningsToString(data.meanings!!),
-                        data.meanings[0].imageUrl
+                        data.meanings!![0].imageUrl //non-null !!
                     )
                 )
             }

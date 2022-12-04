@@ -1,8 +1,8 @@
 package com.example.mytranslateproject.view.main
 
-import com.example.mytranslateproject.model.data.DataModel
+import com.example.model.data.DataModel
 import com.example.mytranslateproject.model.repository.Repository
-import com.example.mytranslateproject.model.data.AppState
+import com.example.model.data.AppState
 import com.example.mytranslateproject.model.repository.RepositoryLocal
 import com.example.mytranslateproject.viewmodel.Interactor
 

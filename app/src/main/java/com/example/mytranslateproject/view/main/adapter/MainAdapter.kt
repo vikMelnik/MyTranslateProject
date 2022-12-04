@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mytranslateproject.R
-import com.example.mytranslateproject.model.data.DataModel
+import com.example.model.data.DataModel
 import com.example.mytranslateproject.utils.convertMeaningsToString
 //import kotlinx.android.synthetic.main.activity_main_recyclerview_item.view.*
 

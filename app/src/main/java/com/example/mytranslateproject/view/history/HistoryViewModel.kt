@@ -1,7 +1,7 @@
 package com.example.mytranslateproject.view.history
 
 import androidx.lifecycle.LiveData
-import com.example.mytranslateproject.model.data.AppState
+import com.example.model.data.AppState
 import com.example.mytranslateproject.utils.parseLocalSearchResults
 import com.example.mytranslateproject.viewmodel.BaseViewModel
 import kotlinx.coroutines.launch

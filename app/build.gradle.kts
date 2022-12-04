@@ -41,59 +41,70 @@ android {
 
 dependencies {
 
+    implementation(project(":model"))
+
     //Room
-    implementation("androidx.room:room-runtime:2.4.3")
+    //implementation(Room.compiler)
+    implementation(Room.room_ktx)
+    implementation(Room.runtime)
     kapt ("androidx.room:room-compiler:2.4.3")
-    implementation("androidx.room:room-ktx:2.4.3")
 
     implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
     implementation("com.google.firebase:firebase-database-ktx:20.1.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
     //Download images
-// Coil
-    implementation("com.squareup.picasso:picasso:2.71828")
+    // Coil
+    implementation(Coil.coil)
 
-//Picasso
-    implementation("com.squareup.picasso:picasso:2.71828")
-//Glide
+    //Picasso
+    implementation(Picasso.picasso)
+
+    //Glide
     implementation("com.github.bumptech.glide:glide:4.11.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     kapt("com.github.bumptech.glide:compiler:4.11.0")
 
     //Koin
-//Текущая версия библиотеки
+    //Текущая версия библиотеки
     //def koin_version = "3.3.0"
-
-//Koin для поддержки Android (Scope,ViewModel ...)
+    //Koin для поддержки Android (Scope,ViewModel ...)
     implementation("io.insert-koin:koin-android:3.3.0")
-// Dagger
-    implementation("com.google.dagger:dagger:2.44.2")
-    implementation("com.google.dagger:dagger-android:2.35.1")
-    implementation("com.google.dagger:dagger-android-support:2.35.1")
+
+    // Dagger
+    implementation(Dagger.dagger)
+    implementation(Dagger.daggerandr)
+    implementation(Dagger.daggersup)
 
     //kapt 'org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.2.0'
     kapt ("com.google.dagger:dagger-compiler:2.43.2")
     kapt ("com.google.dagger:dagger-android-processor:2.35.1")
 
-//Kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.10")
-    implementation("androidx.core:core-ktx:1.9.0")
+    //Kotlin
+    implementation(Kotlin.stdlib)
+    implementation(Kotlin.core)
+    implementation(Kotlin.coroutines_core)
+    implementation(Kotlin.coroutines_android)
 
-// Rx-Java
-    implementation("io.reactivex.rxjava2:rxandroid:2.1.0")
+    // Rx-Java
+    implementation(Rx.rxandroid)
+    //implementation(Rx.rxjava)
+    //implementation("io.reactivex.rxjava2:rxandroid:2.1.0")
     implementation("io.reactivex.rxjava2:rxjava:2.2.8")
-// Retrofit 2
-    implementation("com.squareup.retrofit2:retrofit:2.6.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.6.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:3.12.1")
-    implementation("com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0")
-// Test
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
+
+    // Retrofit 2
+    implementation(Retrofit.retrofit)
+    implementation(Retrofit.logging_interceptor)
+    implementation(Retrofit.converter_gson)
+    implementation(Retrofit.adapter_coroutines)
+
+    // Design
+    implementation(Design.appcompat)
+    implementation(Design.material)
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.4")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+
+    //Test
+    testImplementation(TestImpl.junit)
+    androidTestImplementation(TestImpl.extjunit)
+    androidTestImplementation(TestImpl.espresso)
 }
+

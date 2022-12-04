@@ -1,8 +1,8 @@
 package com.example.mytranslateproject.utils
 
-import com.example.mytranslateproject.model.data.AppState
-import com.example.mytranslateproject.model.data.DataModel
-import com.example.mytranslateproject.model.data.Meanings
+import com.example.model.data.AppState
+import com.example.model.data.DataModel
+import com.example.model.data.Meanings
 import com.example.mytranslateproject.room.HistoryEntity
 
 fun parseOnlineSearchResults(appState: AppState): AppState {
@@ -23,7 +23,7 @@ private fun mapResult(
             getSuccessResultData(appState, isOnline, newSearchResults)
         }
         else -> {
-            return newSearchResults
+
         }
     }
     return newSearchResults
@@ -51,8 +51,8 @@ private fun getSuccessResultData(
 private fun parseOnlineResult(dataModel: DataModel, newDataModels: ArrayList<DataModel>) {
     if (!dataModel.text.isNullOrBlank() && !dataModel.meanings.isNullOrEmpty()) {
         val newMeanings = arrayListOf<Meanings>()
-        for (meaning in dataModel.meanings) {
-            if (meaning.translation != null && !meaning.translation.translation.isNullOrBlank()) {
+        for (meaning in dataModel.meanings!!) { //non-null !!
+            if (meaning.translation != null && !meaning.translation!!.translation.isNullOrBlank()) {
                 newMeanings.add(Meanings(meaning.translation, meaning.imageUrl))
             }
         }
@@ -85,7 +85,6 @@ fun convertDataModelSuccessToEntity(appState: AppState): HistoryEntity? {
         else -> null
     }
 }
-
 
 fun convertMeaningsToString(meanings: List<Meanings>): String {
     var meaningsSeparatedByComma = String()

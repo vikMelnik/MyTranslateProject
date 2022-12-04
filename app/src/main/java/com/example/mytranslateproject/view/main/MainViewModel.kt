@@ -1,7 +1,7 @@
 package com.example.mytranslateproject.view.main
 
 import androidx.lifecycle.LiveData
-import com.example.mytranslateproject.model.data.AppState
+import com.example.model.data.AppState
 import com.example.mytranslateproject.utils.parseOnlineSearchResults
 import com.example.mytranslateproject.viewmodel.BaseViewModel
 import kotlinx.coroutines.Dispatchers

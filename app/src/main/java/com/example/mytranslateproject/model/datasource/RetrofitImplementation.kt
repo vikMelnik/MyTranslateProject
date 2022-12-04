@@ -1,6 +1,6 @@
 package com.example.mytranslateproject.model.datasource
 
-import com.example.mytranslateproject.model.data.DataModel
+import com.example.model.data.DataModel
 import com.example.mytranslateproject.model.data.api.ApiService
 import com.example.mytranslateproject.model.data.api.BaseInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
