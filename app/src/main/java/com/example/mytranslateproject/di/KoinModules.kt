@@ -30,7 +30,7 @@ val application = module {
     }
 }
 
-
+//
 //val mainScreen = module {
 //    scope(named<MainActivity>()) {
 //        viewModel { MainViewModel(get()) }

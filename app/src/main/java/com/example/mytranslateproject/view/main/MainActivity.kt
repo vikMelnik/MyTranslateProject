@@ -19,6 +19,7 @@ import com.example.mytranslateproject.view.history.HistoryActivity
 import com.example.mytranslateproject.view.main.adapter.MainAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.koin.android.ext.android.inject
+import org.koin.androidx.scope.currentScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

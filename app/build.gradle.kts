@@ -69,13 +69,14 @@ dependencies {
     //def koin_version = "3.3.0"
     //Koin для поддержки Android (Scope,ViewModel ...)
 // Koin main features for Android
-    implementation("io.insert-koin:koin-android:3.3.0")
+    implementation(Koin.koin_android)
+    implementation(Koin.koin_core)
 // Java Compatibility
-    implementation("io.insert-koin:koin-android-compat:3.3.0")
+    implementation(Koin.koin_compat)
 // Jetpack WorkManager
-    implementation("io.insert-koin:koin-androidx-workmanager:3.3.0")
+    implementation(Koin.koin_workmanager)
 // Navigation Graph
-    implementation("io.insert-koin:koin-androidx-navigation:3.3.0")
+    implementation(Koin.koin_navigation)
 
     // Dagger
     implementation(Dagger.dagger)
