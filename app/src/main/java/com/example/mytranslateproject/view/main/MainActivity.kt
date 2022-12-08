@@ -8,16 +8,19 @@ import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mytranslateproject.R
 import com.example.mytranslateproject.databinding.ActivityMainBinding
 import com.example.model.data.AppState
 import com.example.model.data.DataModel
 import com.example.mytranslateproject.utils.convertMeaningsToString
 import com.example.mytranslateproject.utils.network.isOnline
+import com.example.mytranslateproject.utils.ui.viewById
 import com.example.mytranslateproject.view.base.BaseActivity
 import com.example.mytranslateproject.view.descriptionscreen.DescriptionActivity
 import com.example.mytranslateproject.view.history.HistoryActivity
 import com.example.mytranslateproject.view.main.adapter.MainAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.koin.android.ext.android.inject
 import org.koin.androidx.scope.ScopeActivity
 import org.koin.androidx.scope.currentScope
@@ -30,8 +33,13 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
 
     private lateinit var binding: ActivityMainBinding
     override lateinit var model: MainViewModel
-
     private val adapter: MainAdapter by lazy { MainAdapter(onListItemClickListener) }
+
+    //Объявляем переменные на уровне класса
+    private val mainActivityRecyclerview by
+    viewById<RecyclerView>(R.id.main_activity_recyclerview)
+    private val searchFAB by viewById<FloatingActionButton>(R.id.search_fab)
+
     private val fabClickListener: View.OnClickListener =
         View.OnClickListener {
             val searchDialogFragment = SearchDialogFragment.newInstance()
@@ -105,7 +113,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
     }
 
     private fun initViews() {
-        binding.searchFab.setOnClickListener(fabClickListener)
-        binding.mainActivityRecyclerview.adapter = adapter
+        searchFAB.setOnClickListener(fabClickListener)
+        mainActivityRecyclerview.adapter = adapter
     }
 }
