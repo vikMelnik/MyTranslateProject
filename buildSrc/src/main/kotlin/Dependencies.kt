@@ -44,8 +44,9 @@ object Versions {
     //Picasso
     const val picasso = "2.71828"
     //Koin
+    const val koin_core = "3.2.2"
     const val koinAndroid = "3.3.0"
-    const val koinViewModel = "3.3.0"
+
     //Coil
     const val coil = "0.11.0"
     //Room
@@ -91,9 +92,13 @@ object Retrofit {
         "com.squareup.okhttp3:logging-interceptor:${Versions.interceptor}"
 }
 object Koin {
-    const val koin_android = "org.koin:koin-android:${Versions.koinAndroid}"
+    const val koin_core = "io.insert-koin:koin-core:${Versions.koin_core}"
+    const val koin_compat = "io.insert-koin:koin-android-compat:${Versions.koinAndroid}"
+    const val koin_workmanager = "io.insert-koin:koin-androidx-workmanager:${Versions.koinAndroid}"
+    const val koin_navigation = "io.insert-koin:koin-androidx-navigation:${Versions.koinAndroid}"
+    const val koin_android = "io.insert-koin:koin-android:${Versions.koinAndroid}"
     const val koin_view_model =
-        "org.koin:koin-android-viewmodel:${Versions.koinViewModel}"
+        "org.koin:koin-android-viewmodel:${Versions.koinAndroid}"
 }
 object Picasso{
     const val picasso = "com.squareup.picasso:picasso:${Versions.picasso}"
