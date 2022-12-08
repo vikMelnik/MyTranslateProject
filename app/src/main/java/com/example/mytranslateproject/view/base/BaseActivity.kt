@@ -3,11 +3,14 @@ package com.example.mytranslateproject.view.base
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.example.mytranslateproject.R
 import com.example.mytranslateproject.databinding.LoadingLayoutBinding
 import com.example.model.data.AppState
 import com.example.model.data.DataModel
+import com.example.mytranslateproject.utils.network.OnlineLiveData
 import com.example.mytranslateproject.utils.network.isOnline
 import com.example.mytranslateproject.utils.ui.AlertDialogFragment
 import com.example.mytranslateproject.viewmodel.BaseViewModel
@@ -23,7 +26,24 @@ abstract class BaseActivity<T : AppState, I : Interactor<T>> : AppCompatActivity
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
-        isNetworkAvailable = isOnline(applicationContext)
+       //isNetworkAvailable = isOnline(applicationContext)
+        subscribeToNetworkChange()
+    }
+
+    private fun subscribeToNetworkChange() {
+        OnlineLiveData(this).observe(
+            this@BaseActivity,
+            Observer<Boolean> {
+                isNetworkAvailable = it
+                if (!isNetworkAvailable) {
+                    Toast.makeText(
+                        this@BaseActivity,
+                        R.string.dialog_message_device_is_offline,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            })
+
     }
 
     override fun onResume() {
