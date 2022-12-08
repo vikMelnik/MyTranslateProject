@@ -1,6 +1,6 @@
 package com.example.mytranslateproject.model.datasource
 
-import com.example.mytranslateproject.model.data.DataModel
+import com.example.model.data.DataModel
 import com.example.mytranslateproject.model.data.api.ApiService
 import com.example.mytranslateproject.model.data.api.BaseInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -40,4 +40,3 @@ class RetrofitImplementation : DataSource<List<DataModel>> {
         private const val BASE_URL_LOCATIONS = "https://dictionary.skyeng.ru/api/public/v1/"
     }
 }
-
