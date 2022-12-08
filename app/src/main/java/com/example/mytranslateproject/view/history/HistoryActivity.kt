@@ -4,9 +4,8 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.example.mytranslateproject.databinding.ActivityHistoryBinding
 import com.example.model.data.AppState
-import com.example.model.data.DataModel
+import com.example.model.data.userdata.DataModel
 import com.example.mytranslateproject.view.base.BaseActivity
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

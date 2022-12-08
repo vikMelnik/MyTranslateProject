@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import com.example.mytranslateproject.R
 import com.example.mytranslateproject.databinding.LoadingLayoutBinding
 import com.example.model.data.AppState
-import com.example.model.data.DataModel
+import com.example.model.data.userdata.DataModel
 import com.example.mytranslateproject.utils.network.OnlineLiveData
 import com.example.mytranslateproject.utils.network.isOnline
 import com.example.mytranslateproject.utils.ui.AlertDialogFragment

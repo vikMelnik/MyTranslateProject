@@ -1,7 +1,7 @@
 package com.example.mytranslateproject.di
 
 import androidx.room.Room
-import com.example.model.data.DataModel
+import com.example.model.data.dto.SearchResultDto
 import com.example.mytranslateproject.model.datasource.RetrofitImplementation
 import com.example.mytranslateproject.model.datasource.RoomDataBaseImplementation
 import com.example.mytranslateproject.model.repository.Repository
@@ -11,18 +11,25 @@ import com.example.mytranslateproject.model.repository.RepositoryLocal
 import com.example.mytranslateproject.room.HistoryDataBase
 import com.example.mytranslateproject.view.history.HistoryInteractor
 import com.example.mytranslateproject.view.history.HistoryViewModel
+import com.example.mytranslateproject.view.main.MainActivity
 import com.example.mytranslateproject.view.main.MainInteractor
 import com.example.mytranslateproject.view.main.MainViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 
 val application = module {
-    single { Room.databaseBuilder(get(), HistoryDataBase::class.java, "HistoryDB").build() }
+    single { Room.databaseBuilder(get(), HistoryDataBase::class.java,
+        "HistoryDB").build() }
     single { get<HistoryDataBase>().historyDao() }
-    single<Repository<List<DataModel>>> { RepositoryImpl(RetrofitImplementation()) }
-    single<RepositoryLocal<List<DataModel>>> { RepositoryImplementationLocal(RoomDataBaseImplementation(get()))
+    single<Repository<List<SearchResultDto>>> {
+        RepositoryImpl(RetrofitImplementation()) }
+    single<RepositoryLocal<List<SearchResultDto>>> {
+        RepositoryImplementationLocal(RoomDataBaseImplementation(get()))
     }
 }
+
 
 //val mainScreen = module {
 //    scope(named<MainActivity>()) {

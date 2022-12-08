@@ -3,6 +3,7 @@ package com.example.mytranslateproject.view.history
 import androidx.lifecycle.LiveData
 import com.example.model.data.AppState
 import com.example.mytranslateproject.utils.parseLocalSearchResults
+
 import com.example.mytranslateproject.viewmodel.BaseViewModel
 import kotlinx.coroutines.launch
 
@@ -30,7 +31,7 @@ class HistoryViewModel(private val interactor: HistoryInteractor) :
     }
 
     override fun onCleared() {
-        _mutableLiveData.value = AppState.Success(null)//Set View to original state in onStop
+        _mutableLiveData.value = AppState.Success(null)//TODO Workaround. Set View to original state
         super.onCleared()
     }
 }

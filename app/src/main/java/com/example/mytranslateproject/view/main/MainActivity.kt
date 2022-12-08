@@ -5,16 +5,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mytranslateproject.R
 import com.example.mytranslateproject.databinding.ActivityMainBinding
 import com.example.model.data.AppState
-import com.example.model.data.DataModel
-import com.example.mytranslateproject.utils.convertMeaningsToString
-import com.example.mytranslateproject.utils.network.isOnline
+import com.example.model.data.userdata.DataModel
+import com.example.mytranslateproject.utils.convertMeaningsToSingleString
 import com.example.mytranslateproject.utils.ui.viewById
 import com.example.mytranslateproject.view.base.BaseActivity
 import com.example.mytranslateproject.view.descriptionscreen.DescriptionActivity
@@ -22,8 +19,6 @@ import com.example.mytranslateproject.view.history.HistoryActivity
 import com.example.mytranslateproject.view.main.adapter.MainAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.koin.android.ext.android.inject
-import org.koin.androidx.scope.ScopeActivity
-import org.koin.androidx.scope.currentScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -52,9 +47,9 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
                 startActivity(
                     DescriptionActivity.getIntent(
                         this@MainActivity,
-                        data.text!!,
-                        convertMeaningsToString(data.meanings!!),
-                        data.meanings!![0].imageUrl //non-null !!
+                        data.text,
+                        convertMeaningsToSingleString(data.meanings),
+                        data.meanings[0].imageUrl
                     )
                 )
             }
