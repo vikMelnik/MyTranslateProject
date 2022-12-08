@@ -1,25 +1,27 @@
 package com.example.mytranslateproject.view.main
 
-import com.example.mytranslateproject.model.data.AppState
-import com.example.mytranslateproject.model.data.DataModel
 import com.example.mytranslateproject.model.repository.Repository
-import com.example.mytranslateproject.presenter.Interactor
-import io.reactivex.Observable
+import com.example.model.data.AppState
+import com.example.model.data.dto.SearchResultDto
+import com.example.mytranslateproject.model.repository.RepositoryLocal
+import com.example.mytranslateproject.utils.mapSearchResultToResult
+import com.example.mytranslateproject.viewmodel.Interactor
 
 class MainInteractor(
-// Снабжаем интерактор репозиторием для получения локальных или внешних
-// данных
-    private val remoteRepository: Repository<List<DataModel>>,
-    private val localRepository: Repository<List<DataModel>>
+    private val repositoryRemote: Repository<List<SearchResultDto>>,
+    private val repositoryLocal: RepositoryLocal<List<SearchResultDto>>
 ) : Interactor<AppState> {
-    // Интерактор лишь запрашивает у репозитория данные, детали имплементации
-    // интерактору неизвестны
-    override fun getData(word: String, fromRemoteSource: Boolean):
-            Observable<AppState> {
-        return if (fromRemoteSource) {
-            remoteRepository.getData(word).map { AppState.Success(it) }
+    override suspend fun getData(word: String, fromRemoteSource: Boolean):
+            AppState {
+        val appState: AppState
+        if (fromRemoteSource) {
+            appState =
+                AppState.Success(mapSearchResultToResult(repositoryRemote.getData(word)))
+            repositoryLocal.saveToDB(appState)
         } else {
-            localRepository.getData(word).map { AppState.Success(it) }
+            appState =
+                AppState.Success(mapSearchResultToResult(repositoryLocal.getData(word)))
         }
+        return appState
     }
 }
