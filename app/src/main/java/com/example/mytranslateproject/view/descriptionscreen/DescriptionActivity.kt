@@ -2,19 +2,18 @@ package com.example.mytranslateproject.view.descriptionscreen
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.RenderEffect
+import android.graphics.Shader
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import coil.ImageLoader
 import coil.request.LoadRequest
-import coil.transform.CircleCropTransformation
-
 import com.example.mytranslateproject.R
 import com.example.mytranslateproject.databinding.ActivityDescriptionBinding
 import com.example.mytranslateproject.utils.network.OnlineLiveData
-import com.example.mytranslateproject.utils.network.isOnline
 import com.example.mytranslateproject.utils.ui.AlertDialogFragment
 
 
@@ -23,6 +22,7 @@ class DescriptionActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDescriptionBinding
 
+    @RequiresApi(31)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDescriptionBinding.inflate(layoutInflater)
@@ -42,11 +42,13 @@ class DescriptionActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
     private fun setActionbarHomeButtonAsUp() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    @RequiresApi(31)
     private fun setData() {
         val bundle = intent.extras
         binding.descriptionHeader.text = bundle?.getString(WORD_EXTRA)
@@ -59,24 +61,24 @@ class DescriptionActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(31)
     private fun startLoadingOrShowError() {
         OnlineLiveData(this).observe(
-            this@DescriptionActivity,
-            Observer<Boolean> {
-                if (it) {
-                    setData()
-                } else {
-                    AlertDialogFragment.newInstance(
-                        getString(R.string.dialog_title_device_is_offline),
-                        getString(R.string.dialog_message_device_is_offline)
-                    ).show(
+            this@DescriptionActivity
+        ) {
+            if (it) {
+                setData()
+            } else {
+                AlertDialogFragment.newInstance(
+                    getString(R.string.dialog_title_device_is_offline),
+                    getString(R.string.dialog_message_device_is_offline)
+                ).show(
                     supportFragmentManager,
                     DIALOG_FRAGMENT_TAG
-                    )
-                    stopRefreshAnimationIfNeeded()
-                }
-            })
-
+                )
+                stopRefreshAnimationIfNeeded()
+            }
+        }
     }
 
     private fun stopRefreshAnimationIfNeeded() {
@@ -85,6 +87,7 @@ class DescriptionActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(31)
     private fun useCoilToLoadPhoto(imageView: ImageView, imageLink: String) {
         val request = LoadRequest.Builder(this)
             .data("https:$imageLink")
@@ -92,18 +95,18 @@ class DescriptionActivity : AppCompatActivity() {
                 onStart = {},
                 onSuccess = { result ->
                     imageView.setImageDrawable(result)
+                    val blurEffect = RenderEffect.createBlurEffect(15f, 0f, Shader.TileMode.MIRROR)
+                    imageView.setRenderEffect(blurEffect)
+                    //binding.root.setRenderEffect(blurEffect)
                 },
                 onError = {
                     imageView.setImageResource(R.drawable.ic_load_error_vector)
                 }
             )
-            .transformations(
-                CircleCropTransformation(),
-            )
             .build()
+
         ImageLoader(this).execute(request)
     }
-
 
     companion object {
 
