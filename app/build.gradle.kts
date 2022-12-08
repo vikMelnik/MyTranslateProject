@@ -109,6 +109,7 @@ dependencies {
     implementation(Design.appcompat)
     implementation(Design.material)
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.core:core-splashscreen:1.0.0")
 
     //Test
     testImplementation(TestImpl.junit)
