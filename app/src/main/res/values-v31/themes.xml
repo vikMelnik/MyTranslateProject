@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.MyTranslateProject" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowSplashScreenBackground">@color/purple_200</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_android</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/color_gray</item>
+        <item name="android:windowSplashScreenBrandingImage">@drawable/ic_apple</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+</resources>
